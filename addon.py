@@ -275,7 +275,7 @@ def login():
             if username=='' or password=='':
                 plugin.notify('用户名或密码为空', delay=2000)
                 return
-        filename = tempdir + '/' + ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10)) + '.jpg'
+        filename = tempdir + ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(10)) + '.jpg'
         captcha = LoginDialog(captcha = bilibili.get_captcha(filename)).get()
         os.remove(filename)
         result, msg = bilibili.login(username, password, captcha)

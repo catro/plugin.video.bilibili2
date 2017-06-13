@@ -39,7 +39,7 @@ class Bilibili():
         result = utils.get_page_content(LOGIN_CAPTCHA_URL.format(random.random()),
                                         headers = {'Referer':'https://passport.bilibili.com/login'})
         if path == None:
-            path = tempdir + '/captcha.jpg'
+            path = tempdir + 'captcha.jpg'
         with open(path, 'wb') as f:
             f.write(result)
         return path
