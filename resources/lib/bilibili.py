@@ -7,13 +7,15 @@ import hashlib
 import urllib, urllib2
 import re
 import os
-import tempfile
 import random
 import xml.dom.minidom as minidom
 from cookielib import MozillaCookieJar
 import requests
 from bs4 import BeautifulSoup
+from xbmcswift2 import xbmc
 from bilibili_config import *
+
+tempdir = xbmc.translatePath('special://home/temp')
 
 class Bilibili():
     def __init__(self, appkey = APPKEY, appsecret = APPSECRET):
@@ -37,7 +39,7 @@ class Bilibili():
         result = utils.get_page_content(LOGIN_CAPTCHA_URL.format(random.random()),
                                         headers = {'Referer':'https://passport.bilibili.com/login'})
         if path == None:
-            path = tempfile.gettempdir() + '/captcha.jpg'
+            path = tempdir + '/captcha.jpg'
         with open(path, 'wb') as f:
             f.write(result)
         return path
